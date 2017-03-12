@@ -1,4 +1,5 @@
 import domain.Cursa;
+import repository.ClientiCurseRepository;
 import repository.CurseRepository;
 import repository.JdbcUtils;
 
@@ -68,13 +69,16 @@ public class Main {
         Cursa cursa = new Cursa("Blabla", data_ora, 18,4);
 
         CurseRepository repo = new CurseRepository(properties);
+        ClientiCurseRepository clientiCurseRepository=new ClientiCurseRepository(properties);
 //        System.out.println(repo.size());
        // repo.save(cursa);
        // repo.delete(17);
 //        repo.findAll().forEach(e-> System.out.println(e));
 //        repo.update(16,cursa);
-        repo.delete(16);
-
+//        repo.delete(16);
+//        clientiCurseRepository.add("Beligan Sergiu",15);
+//        clientiCurseRepository.getAll().forEach(e-> System.out.println(e));
+        clientiCurseRepository.getAllByCursa(1).forEach(e-> System.out.println(e));
 
     }
 }
