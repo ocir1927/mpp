@@ -1,6 +1,7 @@
 import domain.Cursa;
 import repository.RezervariRepository;
 import repository.CurseRepository;
+import services.RezervariServices;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -74,8 +75,10 @@ public class Main {
 //        repo.update(16,cursa);
 //        repo.delete(16);
 //        rezervariRepository.add("Beligan Sergiu",15);
-        rezervariRepository.getAll().forEach(e-> System.out.println(e));
+//        rezervariRepository.getAll().forEach(e-> System.out.println(e));
 //        rezervariRepository.getAllByCursa(2).forEach(e-> System.out.println(e));
+        RezervariServices rezervariServices=new RezervariServices();
+        rezervariServices.getAllByCursa(1).forEach(x-> System.out.println(x));
 
     }
 }

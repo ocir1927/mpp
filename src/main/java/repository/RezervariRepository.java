@@ -30,6 +30,17 @@ public class RezervariRepository {
             System.out.println("Error DB " + ex);
         }
     }
+
+    public void delete(int idRezervare){
+        Connection conn=jdbcUtils.getConnection();
+        try (PreparedStatement preStmt = conn.prepareStatement("DELETE FROM firmatransport.rezervari WHERE id=?")) {
+            preStmt.setInt(1, idRezervare);
+            int result = preStmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error DB " + ex);
+        }
+    }
+
     public List<Rezervare> getAll(){
         Connection con=jdbcUtils.getConnection();
         List<Rezervare> rezervari=new ArrayList<>();
