@@ -2,6 +2,7 @@ package repository;
 
 import domain.Client;
 import domain.Cursa;
+import domain.Rezervare;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,58 +12,61 @@ import java.util.Properties;
 /**
  * Created by Costi on 11.03.2017.
  */
-public class ClientiCurseRepository {
+public class RezervariRepository {
     JdbcUtils jdbcUtils;
-    public ClientiCurseRepository(Properties properties) {
+    public RezervariRepository(Properties properties) {
         this.jdbcUtils = new JdbcUtils(properties);
     }
 
-    public void add(String nume,int cursa){
+    public void add(Rezervare rezervare){
         Connection con = jdbcUtils.getConnection();
-        try (PreparedStatement preStmt = con.prepareStatement("insert into firmatransport.clienti_curse values (?,?,?)")) {
+        try (PreparedStatement preStmt = con.prepareStatement("insert into firmatransport.rezervari values (?,?,?,?)")) {
             preStmt.setInt(1, 0);
-            preStmt.setString(2, nume);
-            preStmt.setInt(3, cursa);
+            preStmt.setInt(2, rezervare.getId_cursa());
+            preStmt.setInt(3, rezervare.getIdClient());
+            preStmt.setInt(4, rezervare.getNrLocuri());
             int result = preStmt.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Error DB " + ex);
         }
     }
-    public List<Client> getAll(){
+    public List<Rezervare> getAll(){
         Connection con=jdbcUtils.getConnection();
-        List<Client> clienti=new ArrayList<>();
-        try(PreparedStatement preStmt=con.prepareStatement("select * from firmatransport.clienti_curse")) {
+        List<Rezervare> rezervari=new ArrayList<>();
+        try(PreparedStatement preStmt=con.prepareStatement("select * from firmatransport.rezervari")) {
             try(ResultSet result=preStmt.executeQuery()) {
                 while (result.next()) {
                     int id = result.getInt("id");
-                    String numeClient = result.getString("nume_client");
+                    int idClient = result.getInt("client");
                     int idCursa = result.getInt("id_cursa");
-                    clienti.add(new Client(id,numeClient,idCursa));
+                    int nrLocuri = result.getInt("nr_locuri");
+                    rezervari.add(new Rezervare(id,idCursa,idClient,nrLocuri));
                 }
             }
         } catch (SQLException e) {
             System.out.println("Error DB "+e);
         }
-        return clienti;
+        return rezervari;
     }
 
-    public List<Client> getAllByCursa(int cursa){
+    public List<Rezervare> getAllByCursa(int cursa){
         Connection con=jdbcUtils.getConnection();
-        List<Client> clienti=new ArrayList<>();
-        try(PreparedStatement preStmt=con.prepareStatement("select * from firmatransport.clienti_curse where id_cursa=?")) {
+        List<Rezervare> rezervari=new ArrayList<>();
+        try(PreparedStatement preStmt=con.prepareStatement("select * from firmatransport.rezervari where id_cursa=?")) {
             preStmt.setInt(1,cursa);
             try(ResultSet result=preStmt.executeQuery()) {
                 while (result.next()) {
                     int id = result.getInt("id");
-                    String numeClient = result.getString("nume_client");
+                    int idClient= result.getInt("client");
                     int idCursa = result.getInt("id_cursa");
-                    clienti.add(new Client(id,numeClient,idCursa));
+                    int nrLocuri= result.getInt("nr_locuri");
+                    rezervari.add(new Rezervare(id,idCursa,idClient,nrLocuri));
                 }
             }
         } catch (SQLException e) {
             System.out.println("Error DB "+e);
         }
-        return clienti;
+        return rezervari;
     }
 
 

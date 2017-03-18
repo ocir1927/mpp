@@ -1,14 +1,11 @@
 import domain.Cursa;
-import repository.ClientiCurseRepository;
+import repository.RezervariRepository;
 import repository.CurseRepository;
-import repository.JdbcUtils;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.Date;
 
 /**
  * Created by Costi on 10.03.2017.
@@ -69,16 +66,16 @@ public class Main {
         Cursa cursa = new Cursa("Blabla", data_ora, 18,4);
 
         CurseRepository repo = new CurseRepository(properties);
-        ClientiCurseRepository clientiCurseRepository=new ClientiCurseRepository(properties);
+        RezervariRepository rezervariRepository =new RezervariRepository(properties);
 //        System.out.println(repo.size());
        // repo.save(cursa);
        // repo.delete(17);
 //        repo.findAll().forEach(e-> System.out.println(e));
 //        repo.update(16,cursa);
 //        repo.delete(16);
-//        clientiCurseRepository.add("Beligan Sergiu",15);
-//        clientiCurseRepository.getAll().forEach(e-> System.out.println(e));
-        clientiCurseRepository.getAllByCursa(1).forEach(e-> System.out.println(e));
+//        rezervariRepository.add("Beligan Sergiu",15);
+        rezervariRepository.getAll().forEach(e-> System.out.println(e));
+//        rezervariRepository.getAllByCursa(2).forEach(e-> System.out.println(e));
 
     }
 }

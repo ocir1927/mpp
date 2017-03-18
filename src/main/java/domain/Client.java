@@ -6,22 +6,12 @@ package domain;
 public class Client {
     private int id;
     private String nume;
-    private int idCursa;
 
-    public Client(String nume, int idCursa) {
-        id=0;
+    public Client(int id, String nume) {
+        this.id = id;
         this.nume = nume;
-        this.idCursa = idCursa;
     }
 
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", nume='" + nume + '\'' +
-                ", idCursa=" + idCursa +
-                '}';
-    }
 
     public int getId() {
         return id;
@@ -39,18 +29,8 @@ public class Client {
         this.nume = nume;
     }
 
-    public int getIdCursa() {
-        return idCursa;
-    }
-
-    public void setIdCursa(int idCursa) {
-        this.idCursa = idCursa;
-    }
-
-    public Client(int id, String nume, int idCursa) {
-
-        this.id = id;
+    public Client(String nume) {
+        this.id=0;
         this.nume = nume;
-        this.idCursa = idCursa;
     }
 }
