@@ -1,6 +1,13 @@
+import controller.RezervariController;
 import domain.Cursa;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import repository.RezervariRepository;
 import repository.CurseRepository;
+import services.CurseServices;
 import services.RezervariServices;
 
 import java.io.FileReader;
@@ -11,7 +18,8 @@ import java.util.*;
 /**
  * Created by Costi on 10.03.2017.
  */
-public class Main {
+public class Main extends Application {
+    BorderPane rootLayout;
     public static void main(String[] args) {
        /* System.out.println("plm");
         Properties prop = new Properties();
@@ -51,7 +59,7 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
-        Properties properties=new Properties();
+      /*  Properties properties=new Properties();
         try {
             properties.load(new FileReader("bd.config"));
         } catch (IOException e) {
@@ -67,7 +75,7 @@ public class Main {
         Cursa cursa = new Cursa("Blabla", data_ora, 18,4);
 
         CurseRepository repo = new CurseRepository(properties);
-        RezervariRepository rezervariRepository =new RezervariRepository(properties);
+        RezervariRepository rezervariRepository =new RezervariRepository(properties);*/
 //        System.out.println(repo.size());
        // repo.save(cursa);
        // repo.delete(17);
@@ -77,8 +85,31 @@ public class Main {
 //        rezervariRepository.add("Beligan Sergiu",15);
 //        rezervariRepository.getAll().forEach(e-> System.out.println(e));
 //        rezervariRepository.getAllByCursa(2).forEach(e-> System.out.println(e));
-        RezervariServices rezervariServices=new RezervariServices();
-        rezervariServices.getAllByCursa(1).forEach(x-> System.out.println(x));
+      /*  RezervariServices rezervariServices=new RezervariServices();
+        rezervariServices.getAllByCursa(1).forEach(x-> System.out.println(x));*/
+      launch(args);
 
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        CurseServices curseServices=new CurseServices();
+        RezervariServices rezervariServices=new RezervariServices();
+
+
+        stage.setTitle("Firma Transport");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(Main.class.getResource("mainView.fxml"));
+
+
+        rootLayout= fxmlLoader.load();
+
+        RezervariController rezervariController=fxmlLoader.getController();
+        rezervariController.setService(rezervariServices,curseServices);
+
+        Scene scene = new Scene(rootLayout);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 }
