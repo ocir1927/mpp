@@ -3,13 +3,11 @@ package services;
 import domain.Rezervare;
 import repository.JdbcUtils;
 import repository.RezervariRepository;
-import utils.Observable;
-import utils.Observer;
+import observer.Observable;
+import observer.Observer;
 
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Created by Costi on 18.03.2017.
@@ -23,7 +21,7 @@ public class RezervariServices implements Observable<Rezervare> {
     }
 
     public void addRezervare(Rezervare rezervare){
-        repo.add(rezervare);
+        repo.save(rezervare);
         notifyObservers();
     }
 
@@ -33,7 +31,7 @@ public class RezervariServices implements Observable<Rezervare> {
     }
 
     public ArrayList<Rezervare> getAllRezervari(){
-        return (ArrayList<Rezervare>) repo.getAll();
+        return (ArrayList<Rezervare>) repo.findAll();
     }
 
     public ArrayList<Rezervare> getAllByCursa(int cursa){

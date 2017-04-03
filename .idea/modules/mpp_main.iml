@@ -9,6 +9,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="model_main" />
+    <orderEntry type="module" module-name="repository_main" />
+    <orderEntry type="module" module-name="server_main" />
+    <orderEntry type="module" module-name="services_main" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: mysql:mysql-connector-java:5.1.20" level="project" />
   </component>
 </module>

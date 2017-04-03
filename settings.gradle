@@ -1,2 +1,6 @@
 rootProject.name = 'mpp'
+include 'server'
+include 'services'
+include 'model'
+include 'repository'
 

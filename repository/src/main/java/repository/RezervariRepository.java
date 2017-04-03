@@ -1,10 +1,11 @@
 package repository;
 
-import domain.Client;
-import domain.Cursa;
 import domain.Rezervare;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -12,13 +13,19 @@ import java.util.Properties;
 /**
  * Created by Costi on 11.03.2017.
  */
-public class RezervariRepository {
+public class RezervariRepository implements IRepository<Integer,Rezervare> {
     JdbcUtils jdbcUtils;
     public RezervariRepository(Properties properties) {
         this.jdbcUtils = new JdbcUtils(properties);
     }
 
-    public void add(Rezervare rezervare){
+    @Override
+    public int size() {
+        return 0;
+    }
+
+    @Override
+    public void save(Rezervare rezervare){
         Connection con = jdbcUtils.getConnection();
         try (PreparedStatement preStmt = con.prepareStatement("insert into firmatransport.rezervari values (?,?,?,?)")) {
             preStmt.setInt(1, 0);
@@ -31,7 +38,18 @@ public class RezervariRepository {
         }
     }
 
-    public void delete(int idRezervare){
+    @Override
+    public void update(Integer integer, Rezervare entity) {
+
+    }
+
+    @Override
+    public Rezervare findOne(Integer integer) {
+        return null;
+    }
+
+    @Override
+    public void delete(Integer idRezervare){
         Connection conn=jdbcUtils.getConnection();
         try (PreparedStatement preStmt = conn.prepareStatement("DELETE FROM firmatransport.rezervari WHERE id=?")) {
             preStmt.setInt(1, idRezervare);
@@ -41,7 +59,8 @@ public class RezervariRepository {
         }
     }
 
-    public List<Rezervare> getAll(){
+    @Override
+    public List<Rezervare> findAll(){
         Connection con=jdbcUtils.getConnection();
         List<Rezervare> rezervari=new ArrayList<>();
         try(PreparedStatement preStmt=con.prepareStatement("select * from firmatransport.rezervari")) {

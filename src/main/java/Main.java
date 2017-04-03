@@ -1,25 +1,15 @@
-import controller.RezervariController;
-import domain.Cursa;
+import controller.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import repository.RezervariRepository;
-import repository.CurseRepository;
-import services.CurseServices;
-import services.RezervariServices;
-
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.*;
-import java.util.*;
-
 /**
  * Created by Costi on 10.03.2017.
  */
 public class Main extends Application {
-    BorderPane rootLayout;
+    AnchorPane rootLayout;
+
     public static void main(String[] args) {
        /* System.out.println("plm");
         Properties prop = new Properties();
@@ -77,39 +67,41 @@ public class Main extends Application {
         CurseRepository repo = new CurseRepository(properties);
         RezervariRepository rezervariRepository =new RezervariRepository(properties);*/
 //        System.out.println(repo.size());
-       // repo.save(cursa);
-       // repo.delete(17);
+        // repo.save(cursa);
+        // repo.delete(17);
 //        repo.findAll().forEach(e-> System.out.println(e));
 //        repo.update(16,cursa);
 //        repo.delete(16);
-//        rezervariRepository.add("Beligan Sergiu",15);
-//        rezervariRepository.getAll().forEach(e-> System.out.println(e));
+//        rezervariRepository.save("Beligan Sergiu",15);
+//        rezervariRepository.findAll().forEach(e-> System.out.println(e));
 //        rezervariRepository.getAllByCursa(2).forEach(e-> System.out.println(e));
       /*  RezervariServices rezervariServices=new RezervariServices();
         rezervariServices.getAllByCursa(1).forEach(x-> System.out.println(x));*/
-      launch(args);
+        launch(args);
 
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        CurseServices curseServices=new CurseServices();
-        RezervariServices rezervariServices=new RezervariServices();
+       /* CurseServices curseServices = new CurseServices();
+        RezervariServices rezervariServices = new RezervariServices();
+        ClientiServices clientiServices = new ClientiServices();
+        OperatoriServices operatoriServices = new OperatoriServices();
 
 
         stage.setTitle("Firma Transport");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(Main.class.getResource("mainView.fxml"));
+        fxmlLoader.setLocation(Main.class.getResource("logIn.fxml"));
 
-
-        rootLayout= fxmlLoader.load();
-
-        RezervariController rezervariController=fxmlLoader.getController();
-        rezervariController.setService(rezervariServices,curseServices);
+        rootLayout = fxmlLoader.load();
+       *//* RezervariController rezervariController=fxmlLoader.getController();
+        rezervariController.setService(rezervariServices,curseServices,clientiServices);*//*
+        LoginController loginController = fxmlLoader.getController();
+        loginController.setServices(operatoriServices, rezervariServices, curseServices, clientiServices);
 
         Scene scene = new Scene(rootLayout);
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.show();
+        stage.show();*/
     }
 }

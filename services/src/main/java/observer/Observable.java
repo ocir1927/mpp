@@ -1,14 +1,14 @@
-package utils;
+package observer;
 
 public interface Observable<E> {
     /**
-     * Register an observer.
-     * @param o the observer
+     * Register an utils.
+     * @param o the utils
      */
     void addObserver(Observer<E> o);
     /**
-     * Unregister an observer.
-     * @param o the observer
+     * Unregister an utils.
+     * @param o the utils
      */
     void removeObserver(Observer<E> o);
     

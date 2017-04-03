@@ -7,15 +7,13 @@ public class Operator {
     private String username;
     private String password;
     private String email;
-    private int oficiu;
 
     @Override
     public String toString() {
         return "Operator{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", oficiu=" + oficiu +
+                ", email='" + email +
                 '}';
     }
 
@@ -43,18 +41,11 @@ public class Operator {
         this.email = email;
     }
 
-    public int getOficiu() {
-        return oficiu;
-    }
 
-    public void setOficiu(int oficiu) {
-        this.oficiu = oficiu;
-    }
 
-    public Operator(String username, String password, String email, int oficiu) {
+    public Operator(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.oficiu = oficiu;
     }
 }
