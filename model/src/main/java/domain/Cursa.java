@@ -1,12 +1,12 @@
 package domain;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * Created by Costi on 10.03.2017.
  */
-public class Cursa {
+public class Cursa implements Serializable {
     private int id;
 
     private String destinatie;

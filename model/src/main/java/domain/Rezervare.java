@@ -1,9 +1,11 @@
 package domain;
 
+import java.io.Serializable;
+
 /**
  * Created by Costi on 17.03.2017.
  */
-public class Rezervare {
+public class Rezervare implements Serializable{
     private int id;
     private int id_cursa;
     private int idClient;

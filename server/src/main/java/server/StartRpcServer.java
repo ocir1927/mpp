@@ -1,10 +1,8 @@
 package server;
 
-import services.IServer;
-import services.OperatoriServices;
+import services.*;
 import utils.AbstractServer;
 import utils.RpcConcurrentServer;
-import services.ServerException;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -28,8 +26,11 @@ public class StartRpcServer {
       /*  UserRepository userRepo=new UserRepositoryJdbc(serverProps);
         MessageRepository messRepo=new MessageRepositoryJdbc(serverProps);*/
         OperatoriServices operatoriServices=new OperatoriServices();
+        CurseServices curseServices=new CurseServices();
+        RezervariServices rezervariServices=new RezervariServices();
+        ClientiServices clientiServices=new ClientiServices();
 
-        IServer chatServerImpl=new ChatServerImpl(operatoriServices);
+        IServer chatServerImpl=new ChatServerImpl(operatoriServices,curseServices,rezervariServices,clientiServices);
         int chatServerPort=defaultPort;
         try {
             chatServerPort = Integer.parseInt(serverProps.getProperty("firmatransport.server.port"));

@@ -10,19 +10,20 @@ import repository.JdbcUtils;
 public class ClientiServices {
     private ClientiRepository clientiRepository;
 
-    public ClientiServices(){
-        clientiRepository=new ClientiRepository(JdbcUtils.loadProps());
+    public ClientiServices() {
+        clientiRepository = new ClientiRepository(JdbcUtils.loadProps());
     }
 
-    public Client findOne(int idClient){
-        return clientiRepository.findOne(idClient) ;
+    public Client findOne(int idClient) {
+        return clientiRepository.findOne(idClient);
     }
 
-    public int findByName(String nume){
+    public int findByName(String nume) {
         return clientiRepository.findIdByName(nume);
     }
 
-    public void addClient(Client client){
-        clientiRepository.save(client);
+    public void addClient(Client client) {
+        if (findOne(findByName(client.getNume())) != null)
+            clientiRepository.save(client);
     }
 }

@@ -18,6 +18,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="client_main" target="1.8" />
+      <module name="client_test" target="1.8" />
       <module name="model_main" target="1.8" />
       <module name="model_test" target="1.8" />
       <module name="mpp_main" target="1.8" />

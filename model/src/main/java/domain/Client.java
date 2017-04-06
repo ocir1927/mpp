@@ -1,9 +1,11 @@
 package domain;
 
+import java.io.Serializable;
+
 /**
  * Created by Costi on 11.03.2017.
  */
-public class Client {
+public class Client implements Serializable {
     private int id;
     private String nume;
 

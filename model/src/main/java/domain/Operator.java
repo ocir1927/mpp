@@ -1,9 +1,11 @@
 package domain;
 
+import java.io.Serializable;
+
 /**
  * Created by Costi on 17.03.2017.
  */
-public class Operator {
+public class Operator implements Serializable{
     private String username;
     private String password;
     private String email;
